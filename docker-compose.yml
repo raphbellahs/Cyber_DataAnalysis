@@ -1,0 +1,15 @@
+# docker-compose.yml
+version: '3'
+services:
+  jupyter-pyspark:
+    build: .
+    ports:
+      - "8888:8888"
+      - "4040:4040"
+    volumes:
+      - ./notebooks:/opt/spark/notebooks
+    environment:
+      - SPARK_HOME=/opt/spark
+      - PYSPARK_PYTHON=/usr/bin/python3
+      - PYSPARK_DRIVER_PYTHON=jupyter
+      - PYSPARK_DRIVER_PYTHON_OPTS='notebook'
